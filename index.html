@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Compasso, a trilha do sim</title>
+<meta name="description" content="20 referências com intenção para cada momento da cerimônia. Filtrem, favoritem e montem o roteiro musical do casamento.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#faf5ec;--sm:#fffdf7;--ink:#33272a;--mut:#8a7a72;--wn:#7b2230;--gd:#b98a2f;--ln:rgba(51,39,42,.16);--rd:20px}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--ink);font-family:Archivo,system-ui,sans-serif;margin:0;overflow-x:hidden}
+::selection{background:var(--wn);color:#faf5ec}
+img{display:block;max-width:100%}
+a{color:inherit}
+.d{font-family:"Instrument Serif",serif;font-weight:400;line-height:1.02}
+.pl{position:fixed;inset:0;z-index:200;background:#f4eee1;display:flex;align-items:flex-end;justify-content:space-between;padding:5vw;transition:opacity .7s ease,visibility .7s}
+.pl.g{opacity:0;visibility:hidden}
+.pl b{font-family:"Instrument Serif",serif;font-size:clamp(3rem,11vw,8rem);line-height:1}
+.pl b i{font-style:normal;color:var(--wn)}
+.pl span{font-size:.8rem;letter-spacing:.35em;text-transform:uppercase;color:var(--mut)}
+.hd{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:.9rem 4vw;border-bottom:1px solid transparent;transition:background .35s,border-color .35s}
+.hd.f{background:rgba(250,245,236,.92);backdrop-filter:blur(14px);border-color:var(--ln)}
+.hd-l{font-family:"Instrument Serif",serif;font-size:1.6rem;text-decoration:none}
+.hd-l i{font-style:normal;color:var(--wn)}
+.hd-n{display:flex;gap:2rem}
+.hd-n a{text-decoration:none;font-size:.82rem;letter-spacing:.22em;text-transform:uppercase;color:var(--mut)}
+.hd-n a:hover{color:var(--wn)}
+.hd-c{background:var(--wn);color:#faf5ec;border:0;border-radius:999px;padding:.8rem 1.6rem;font-weight:700;font-size:.82rem;letter-spacing:.14em;text-transform:uppercase;text-decoration:none;cursor:pointer;font-family:inherit}
+.hd-m{display:none;background:none;border:0;color:var(--ink);font-size:1.6rem;cursor:pointer}
+.hro{position:relative;min-height:92svh;display:flex;flex-direction:column;justify-content:flex-end;overflow:hidden;background:radial-gradient(70rem 34rem at 50% 110%,rgba(185,138,47,.28),transparent),#faf5ec}
+.hro-x{position:relative;padding:0 4vw 4vh}
+.hro-s{display:inline-block;font-size:.78rem;letter-spacing:.4em;text-transform:uppercase;color:var(--wn);border:1px solid rgba(123,34,48,.5);border-radius:999px;padding:.55rem 1.2rem;margin-bottom:1.4rem}
+.hro-t{font-size:clamp(3rem,10vw,9rem);margin:0}
+.hro-t em{color:var(--wn)}
+.hro-p{max-width:34rem;color:#5c5347;font-size:clamp(1rem,1.6vw,1.2rem);line-height:1.6}
+.hro-a{display:flex;gap:1rem;flex-wrap:wrap;margin-top:1.8rem}
+.bt{display:inline-block;border-radius:999px;padding:1rem 2.1rem;font-weight:700;font-size:.85rem;letter-spacing:.14em;text-transform:uppercase;text-decoration:none;cursor:pointer;border:1px solid transparent;font-family:inherit}
+.bt1{background:var(--wn);color:#faf5ec}
+.bt1:hover{transform:translateY(-2px)}
+.bt2{border-color:var(--ln);color:var(--ink)}
+.bt2:hover{border-color:var(--wn);color:var(--wn)}
+.hro-f{position:relative;display:grid;grid-template-columns:repeat(4,1fr);border-top:1px solid var(--ln);margin-top:3rem}
+.hro-f div{padding:1.2rem 4vw 1.6rem;border-left:1px solid var(--ln)}
+.hro-f div:first-child{border-left:0;padding-left:0}
+.hro-f b{font-family:"Instrument Serif",serif;font-size:clamp(1.5rem,2.6vw,2.2rem);display:block;font-weight:400}
+.hro-f span{font-size:.75rem;letter-spacing:.25em;text-transform:uppercase;color:var(--mut)}
+.mq{border-top:1px solid var(--ln);border-bottom:1px solid var(--ln);overflow:hidden;background:var(--wn);color:#faf5ec;padding:.9rem 0}
+.mq-t{display:flex;gap:3rem;width:max-content;animation:mq 24s linear infinite;font-family:"Instrument Serif",serif;font-size:1.15rem;white-space:nowrap}
+@keyframes mq{to{transform:translateX(-50%)}}
+.mn{padding:14vh 4vw;max-width:90rem}
+.mn p{font-family:"Instrument Serif",serif;font-size:clamp(1.7rem,4.2vw,3.2rem);line-height:1.3;margin:0}
+.mn em{color:var(--wn)}
+.sc{padding:8vh 4vw}
+.sc-h{display:flex;align-items:baseline;justify-content:space-between;gap:1rem;border-bottom:1px solid var(--ln);padding-bottom:1.2rem;margin-bottom:2rem}
+.sc-h h2{font-family:"Instrument Serif",serif;font-weight:400;font-size:clamp(2.2rem,5.5vw,4rem);margin:0}
+.sc-h span{color:var(--mut);font-size:.8rem;letter-spacing:.3em;text-transform:uppercase}
+.flt{display:flex;gap:.7rem;flex-wrap:wrap;margin-bottom:.8rem}
+.flt b{width:100%;font-size:.72rem;letter-spacing:.3em;text-transform:uppercase;color:var(--mut)}
+.chip{background:none;border:1px solid var(--ln);color:var(--ink);border-radius:999px;padding:.6rem 1.2rem;font-size:.85rem;font-weight:600;cursor:pointer;font-family:inherit}
+.chip.on{background:var(--wn);border-color:var(--wn);color:#faf5ec}
+.srch{width:100%;box-sizing:border-box;background:#fff;border:1px solid var(--ln);border-radius:14px;color:var(--ink);padding:1rem;font-size:1rem;font-family:inherit;margin:.6rem 0 2rem}
+.srch:focus{outline:none;border-color:var(--wn)}
+.count{color:var(--mut);font-size:.9rem;margin-bottom:1.5rem}
+.count b{color:var(--wn)}
+.sg-g{display:grid;grid-template-columns:repeat(3,1fr);gap:1.2rem}
+.sg-c{border-radius:var(--rd);overflow:hidden;background:var(--sm);border:1px solid var(--ln);display:flex;flex-direction:column}
+.sg-c img{aspect-ratio:16/9;width:100%;object-fit:cover}
+.sg-c div{padding:1.4rem;display:flex;flex-direction:column;gap:.5rem;flex:1}
+.sg-c e{font-size:.7rem;letter-spacing:.25em;text-transform:uppercase;color:var(--wn);font-weight:700}
+.sg-c h3{font-family:"Instrument Serif",serif;font-weight:400;font-size:1.4rem;margin:0}
+.sg-c .ar{color:var(--mut);font-size:.9rem;margin:0}
+.sg-c p{color:var(--mut);font-size:.9rem;line-height:1.65;margin:0 0 .6rem;flex:1}
+.sg-c tg{display:flex;gap:.4rem;flex-wrap:wrap}
+.sg-c tg span{font-size:.7rem;background:rgba(123,34,48,.08);border-radius:99px;padding:.3rem .7rem;color:var(--wn)}
+.sg-c f{display:flex;gap:.6rem;margin-top:.6rem}
+.sg-c f a,.sg-c f button{flex:1;text-align:center;border-radius:99px;padding:.75rem;font-size:.75rem;letter-spacing:.12em;text-transform:uppercase;font-weight:800;cursor:pointer;font-family:inherit;text-decoration:none}
+.sg-c f a{background:var(--wn);color:#faf5ec}
+.sg-c f button{background:none;border:1px solid var(--ln);color:var(--ink)}
+.sg-c f button.fv{background:var(--wn);border-color:var(--wn);color:#faf5ec}
+.rot{background:var(--wn);color:#faf5ec;border-radius:calc(var(--rd) + 6px);margin:0 4vw;padding:3.5rem 3rem}
+.rot h2{font-family:"Instrument Serif",serif;font-weight:400;font-size:clamp(2rem,4.5vw,3.2rem);margin:0 0 .6rem}
+.rot>p{color:#f3dfe1;max-width:40rem;line-height:1.7}
+.rot-o{background:rgba(250,245,236,.1);border:1px solid rgba(250,245,236,.3);border-radius:16px;padding:1.4rem;margin-top:1.6rem}
+.rot-o h3{margin:0 0 1rem;font-size:1.1rem}
+.rot-o ol{margin:0;padding-left:1.3rem;line-height:2}
+.rot-o select{background:#faf5ec;border:0;border-radius:10px;padding:.5rem;font-family:inherit;font-size:.9rem;max-width:100%}
+.rot-a{display:flex;gap:.8rem;flex-wrap:wrap;margin-top:1.6rem}
+.rot-a button{border-radius:99px;padding:.9rem 1.8rem;font-weight:800;font-size:.8rem;letter-spacing:.12em;text-transform:uppercase;cursor:pointer;font-family:inherit;border:1px solid #faf5ec}
+.rot-a .w{background:#faf5ec;color:var(--wn);border-color:#faf5ec}
+.rot-a .g{background:none;color:#faf5ec}
+.fq-i{border-bottom:1px solid var(--ln)}
+.fq-q{width:100%;background:none;border:0;color:var(--ink);display:flex;justify-content:space-between;align-items:center;padding:1.5rem 0;font-size:1.1rem;font-weight:600;cursor:pointer;text-align:left;font-family:inherit}
+.fq-q i{font-style:normal;color:var(--wn);font-size:1.5rem;transition:transform .3s}
+.fq-i.o .fq-q i{transform:rotate(45deg)}
+.fq-a{max-height:0;overflow:hidden;transition:max-height .4s ease;color:var(--mut);line-height:1.7}
+.fq-a p{margin:0 0 1.5rem;max-width:44rem}
+.ft{padding:10vh 4vw 2rem;border-top:1px solid var(--ln);margin-top:8vh}
+.ft-g{font-family:"Instrument Serif",serif;font-size:clamp(2.8rem,11vw,10rem);margin:0}
+.ft-g em{color:var(--wn)}
+.ft-b{display:flex;justify-content:space-between;gap:1rem;flex-wrap:wrap;color:var(--mut);font-size:.85rem;margin-top:2rem}
+.rv{opacity:0;transform:translateY(36px);transition:opacity .8s ease,transform .8s ease}
+.rv.on{opacity:1;transform:none}
+@media(max-width:960px){.hd-n{display:none}.hd-m{display:block}.hd-n.o{display:flex;position:fixed;inset:0;background:#faf5ec;flex-direction:column;align-items:center;justify-content:center;gap:2rem}.sg-g{grid-template-columns:1fr}.hro-f{grid-template-columns:repeat(2,1fr)}.hro-f div:nth-child(3){border-left:0;padding-left:0}}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.001s !important;transition-duration:.001s !important}html{scroll-behavior:auto}.rv{opacity:1;transform:none}}
+</style>
+</head>
+<body>
+<div class="pl" id="pl"><span>Compasso</span><b><i id="pln">0</i>%</b></div>
+<header class="hd" id="hd">
+<a class="hd-l" href="#topo">compasso<i>.</i></a>
+<nav class="hd-n" id="hdn">
+<a href="#repertorio">Repertório</a>
+<a href="#roteiro">Roteiro</a>
+<a href="#duvidas">Dúvidas</a>
+</nav>
+<a class="hd-c" href="#roteiro">Montar roteiro</a>
+<button class="hd-m" id="hdm" aria-label="Abrir menu">☰</button>
+</header>
+<section class="hro" id="topo">
+<div class="hro-x">
+<span class="hro-s">Música para casamentos</span>
+<h1 class="hro-t d">A trilha do <em>sim de vocês.</em></h1>
+<p class="hro-p">20 referências com intenção para cada momento da cerimônia. Filtrem, ouçam, favoritem e saiam com o roteiro pronto.</p>
+<div class="hro-a">
+<a class="bt bt1" href="#repertorio">Explorar repertório</a>
+<a class="bt bt2" href="#roteiro">Montar roteiro</a>
+</div>
+<div class="hro-f">
+<div><b>20 músicas</b><span>curadoria com intenção</span></div>
+<div><b>7 momentos</b><span>da recepção à saída</span></div>
+<div><b>4 estilos</b><span>MPB, pop, clássica, cristã</span></div>
+<div><b>1 roteiro</b><span>pronto para levar</span></div>
+</div>
+</div>
+</section>
+<div class="mq" aria-hidden="true"><div class="mq-t" id="mqt">
+<span>Ouvir •</span><span>Sentir •</span><span>Escolher •</span><span>Favoritar •</span><span>Roteirizar •</span><span>Celebrar •</span>
+</div></div>
+<section class="mn rv">
+<p>Cada história tem um som. <em>A função aqui é ajudar vocês a acharem o seu,</em> com contexto honesto e sem ranking de popularidade.</p>
+</section>
+<section class="sc" id="repertorio">
+<div class="sc-h rv"><h2 class="d">Repertório</h2><span><b id="favc" style="color:var(--wn)">0</b> favoritas</span></div>
+<div class="flt rv" id="fm"><b>Momento</b></div>
+<div class="flt rv" id="fs"><b>Estilo</b></div>
+<div class="flt rv" id="fd"><b>Clima</b></div>
+<input class="srch rv" id="sq" placeholder="Buscar por música ou artista..." autocomplete="off">
+<p class="count rv" id="ct"></p>
+<div class="sg-g" id="grid"></div>
+</section>
+<section class="rot rv" id="roteiro">
+<h2 class="d">Roteiro da cerimônia</h2>
+<p>Escolha uma favorita para cada momento. O roteiro monta sozinho e sai pronto para o grupo, o celebrante e o cerimonial.</p>
+<div class="rot-o"><h3>Ordem da cerimônia</h3><ol id="rotl"></ol></div>
+<div class="rot-a">
+<button class="w" id="rcopy">Copiar roteiro</button>
+<button class="g" id="rwa">Enviar no WhatsApp</button>
+<button class="g" id="rclear">Limpar favoritas</button>
+</div>
+</section>
+<section class="sc" id="duvidas">
+<div class="sc-h rv"><h2 class="d">Dúvidas comuns</h2><span>bom saber</span></div>
+<div class="rv">
+<div class="fq-i"><button class="fq-q">Escolher aqui autoriza tocar na festa?<i>+</i></button><div class="fq-a"><p>Não. São referências para decidir, não licenças. Verifiquem execução e Ecad com os responsáveis.</p></div></div>
+<div class="fq-i"><button class="fq-q">E se a igreja vetar alguma música?<i>+</i></button><div class="fq-a"><p>Comum em cerimônias religiosas. Levem o roteiro com 1 reserva por momento para aprovar de uma vez.</p></div></div>
+<div class="fq-i"><button class="fq-q">Minhas favoritas ficam salvas?<i>+</i></button><div class="fq-a"><p>Sim, neste navegador. Para levar a outro aparelho, copie o roteiro ou envie no WhatsApp.</p></div></div>
+<div class="fq-i"><button class="fq-q">Posso ouvir antes de favoritar?<i>+</i></button><div class="fq-a"><p>Deve. Cada card abre o vídeo original no YouTube. Decisão boa é decisão ouvida.</p></div></div>
+</div>
+</section>
+<footer class="ft">
+<h2 class="ft-g d">Que comece <em>a música.</em></h2>
+<div class="ft-b"><span>© <i id="yr">2026</i> Compasso. Curadoria editorial, vídeos dos respectivos criadores.</span><span>Feito para casais.</span></div>
+</footer>
+<script>
+(function(){
+"use strict";
+var $=function(s,c){return (c||document).querySelector(s)};
+var $$=function(s,c){return Array.prototype.slice.call((c||document).querySelectorAll(s))};
+/* dados */
+var SG=[
+{id:"t1",yt:"rtOvBOTyX00",t:"A Thousand Years",a:"Christina Perri",s:"Pop internacional",m:"Emocionante",mo:["Entrada da noiva","Entrada das alianças"],d:"Romântica e cinematográfica, cresce junto com a entrada."},
+{id:"t2",yt:"2Vv-BfVoq4g",t:"Perfect",a:"Ed Sheeran",s:"Pop internacional",m:"Emocionante",mo:["Entrada do noivo","Entrada da noiva","Assinaturas e cumprimentos"],d:"Intimidade de dança a dois, sem grandiosidade forçada."},
+{id:"t3",yt:"450p7goxZqg",t:"All of Me",a:"John Legend",s:"Pop internacional",m:"Emocionante",mo:["Entrada do noivo","Entrada da noiva","Assinaturas e cumprimentos"],d:"Piano e voz próximos, declaração com personalidade."},
+{id:"t4",yt:"t7M89YJAPhM",t:"Ainda Bem",a:"Marisa Monte",s:"MPB",m:"Leve",mo:["Recepção dos convidados","Família e padrinhos","Saída do casal"],d:"Brasileira e calorosa, leveza para receber e celebrar."},
+{id:"t5",yt:"ZFYGyKIKADI",t:"Pra Você Guardei o Amor",a:"Nando Reis e Ana Cañas",s:"MPB",m:"Emocionante",mo:["Família e padrinhos","Entrada do noivo","Entrada da noiva"],d:"Dueto em português com sentido de encontro."},
+{id:"t6",yt:"8nOEO7Hm7rg",t:"De Janeiro a Janeiro",a:"Roberta Campos e Nando Reis",s:"MPB",m:"Emocionante",mo:["Entrada do noivo","Entrada da noiva","Assinaturas e cumprimentos"],d:"Duas vozes traduzindo parceria."},
+{id:"t7",yt:"F1yNwxLW1Cw",t:"Trevo (Tu)",a:"ANAVITÓRIA",s:"MPB",m:"Leve",mo:["Recepção dos convidados","Família e padrinhos","Entrada das alianças"],d:"Delicadeza acústica para entradas curtas e ar livre."},
+{id:"t8",yt:"hWadAXfH6Uc",t:"Velha Infância",a:"Melim",s:"MPB",m:"Leve",mo:["Recepção dos convidados","Família e padrinhos","Saída do casal"],d:"Afeto descontraído numa canção que todo mundo conhece."},
+{id:"t9",yt:"q6j27Be7mxM",t:"A Thousand Years, instrumental",a:"The Piano Guys",s:"Pop internacional",m:"Emocionante",mo:["Entrada da noiva","Entrada das alianças"],d:"A mesma canção sem voz, arco próprio de piano e cello."},
+{id:"t10",yt:"JvNQLJ1_HQ0",t:"Canon em Ré maior",a:"Pachelbel",s:"Clássica",m:"Solene",mo:["Recepção dos convidados","Família e padrinhos","Entrada da noiva"],d:"Continuidade e crescimento gradual para entradas em sequência."},
+{id:"t11",yt:"wEJruV9SPao",t:"Jesus, alegria dos homens",a:"Bach",s:"Clássica",m:"Solene",mo:["Família e padrinhos","Entrada das alianças","Assinaturas e cumprimentos"],d:"Serenidade em fluxo contínuo, inclusive em formação enxuta."},
+{id:"t12",yt:"O-aavAlSYgc",t:"Can't Help Falling in Love",a:"Elvis Presley",s:"Pop internacional",m:"Emocionante",mo:["Entrada do noivo","Entrada da noiva","Assinaturas e cumprimentos"],d:"Calma delicada que atravessa gerações."},
+{id:"t13",yt:"w_DKWlrA24k",t:"Somewhere Over the Rainbow",a:"Israel Kamakawiwoʻole",s:"Pop internacional",m:"Leve",mo:["Recepção dos convidados","Entrada das alianças","Saída do casal"],d:"Ukulele sonhador para celebração descontraída."},
+{id:"t14",yt:"at9ci5FR53M",t:"Oração pela Família",a:"Padre Zezinho",s:"Cristã",m:"Solene",mo:["Família e padrinhos","Assinaturas e cumprimentos"],d:"Oração cantada ligada à vida em família."},
+{id:"t15",yt:"LOiQ5BvDlSw",t:"Aos Olhos do Pai",a:"Crianças Diante do Trono",s:"Cristã",m:"Leve",mo:["Entrada das alianças"],d:"Para entrada das crianças, se fizer sentido à comunidade."},
+{id:"t16",yt:"3d4xXvF2ukY",t:"Ave Maria, Schubert",a:"André Rieu e Mirusia",s:"Clássica",m:"Solene",mo:["Família e padrinhos","Entrada da noiva","Assinaturas e cumprimentos"],d:"Contemplativa e devocional para solenidade."},
+{id:"t17",yt:"0Oo4z37OUEI",t:"Marcha Nupcial, Mendelssohn",a:"Berliner Philharmoniker",s:"Clássica",m:"Celebrativo",mo:["Saída do casal"],d:"Sinal sonoro de celebração para saída com energia."},
+{id:"t18",yt:"dElRVQFqj-k",t:"Marry You",a:"Bruno Mars",s:"Pop internacional",m:"Celebrativo",mo:["Saída do casal"],d:"Pulso animado para saída descontraída."},
+{id:"t19",yt:"seZMOTGCDag",t:"Better Together",a:"Jack Johnson",s:"Pop internacional",m:"Leve",mo:["Recepção dos convidados","Assinaturas e cumprimentos","Saída do casal"],d:"Relaxada e acolhedora, sem grandiosidade."},
+{id:"t20",yt:"IVz8eXZK53E",t:"Como É Grande o Meu Amor por Você",a:"Roberto Carlos",s:"MPB",m:"Emocionante",mo:["Família e padrinhos","Entrada do noivo","Entrada da noiva"],d:"Declaração direta que conecta com a memória da família."}
+];
+var MOM=["Recepção dos convidados","Família e padrinhos","Entrada do noivo","Entrada da noiva","Entrada das alianças","Assinaturas e cumprimentos","Saída do casal"];
+var F={m:"",s:"",d:"",q:""};
+var favs={};
+try{favs=JSON.parse(localStorage.getItem("compasso1")||"{}")||{}}catch(e){favs={}}
+function save(){try{localStorage.setItem("compasso1",JSON.stringify(favs))}catch(e){}}
+function byId(id){for(var i=0;i<SG.length;i++){if(SG[i].id===id)return SG[i]}return null}
+/* filtros */
+function chips(box,items,key){
+var b=$(box);b.innerHTML="<b>"+b.querySelector("b").textContent+"</b>";
+items.forEach(function(it){
+var c=document.createElement("button");c.className="chip"+(F[key]===it?" on":"");c.textContent=it;
+c.onclick=function(){F[key]=(F[key]===it?"":it);render()};b.appendChild(c);
+});
+}
+function render(){
+chips("#fm",["Recepção dos convidados","Família e padrinhos","Entrada do noivo","Entrada da noiva","Entrada das alianças","Assinaturas e cumprimentos","Saída do casal"],"m");
+chips("#fs",["MPB","Pop internacional","Clássica","Cristã"],"s");
+chips("#fd",["Emocionante","Leve","Solene","Celebrativo"],"d");
+var g=$("#grid");g.innerHTML="";
+var n=0;
+SG.forEach(function(s){
+if(F.m&&s.mo.indexOf(F.m)<0)return;
+if(F.s&&s.s!==F.s)return;
+if(F.d&&s.m!==F.d)return;
+if(F.q&&(s.t+" "+s.a).toLowerCase().indexOf(F.q)<0)return;
+n++;
+var c=document.createElement("article");c.className="sg-c rv on";
+c.innerHTML='<img src="https://i.ytimg.com/vi/'+s.yt+'/hqdefault.jpg" alt="'+s.t+", "+s.a+'" loading="lazy"><div><e>'+s.s+" · "+s.m+"</e><h3>"+s.t+"</h3><p class='ar'>"+s.a+"</p><p>"+s.d+"</p><tg>"+s.mo.map(function(m){return "<span>"+m+"</span>"}).join("")+'</tg><f><a href="https://www.youtube.com/watch?v='+s.yt+'" target="_blank" rel="noopener">Ouvir</a><button data-f="'+s.id+'" class="'+(favs[s.id]?"fv":"")+'">'+(favs[s.id]?"★ Salva":"☆ Salvar")+"</button></f></div>";
+g.appendChild(c);
+});
+$("#ct").innerHTML="Mostrando <b>"+n+"</b> de 20 referências";
+$$("#grid [data-f]").forEach(function(b){b.onclick=function(){var id=b.getAttribute("data-f");if(favs[id]){delete favs[id]}else{favs[id]=1}save();render();roteiro()}});
+var fc=Object.keys(favs).length;$("#favc").textContent=fc;
+}
+$("#sq").addEventListener("input",function(e){F.q=e.target.value.toLowerCase();render()});
+/* roteiro */
+function roteiro(){
+var l=$("#rotl");l.innerHTML="";
+var ids=Object.keys(favs);
+MOM.forEach(function(m){
+var opts='<option value="">—</option>';
+ids.forEach(function(id){var s=byId(id);if(s)opts+='<option value="'+id+'"> '+s.t+" — "+s.a+"</option>"});
+var li=document.createElement("li");li.innerHTML="<b>"+m+":</b> ";
+var sel=document.createElement("select");sel.setAttribute("data-m",m);sel.innerHTML=opts;
+var saved=null;
+try{saved=JSON.parse(localStorage.getItem("compassoR")||"{}")||{}}catch(e){saved={}}
+if(saved[m]&&favs[saved[m]])sel.value=saved[m];
+sel.onchange=function(){
+var all={};try{all=JSON.parse(localStorage.getItem("compassoR")||"{}")||{}}catch(e){all={}}
+if(sel.value){all[m]=sel.value}else{delete all[m]}
+try{localStorage.setItem("compassoR",JSON.stringify(all))}catch(e){}
+};
+li.appendChild(sel);l.appendChild(li);
+});
+}
+function rotTxt(){
+var saved={};try{saved=JSON.parse(localStorage.getItem("compassoR")||"{}")||{}}catch(e){saved={}}
+var out="NOSSO ROTEIRO, COMPASSO\n\n";
+MOM.forEach(function(m){
+var s=saved[m]?byId(saved[m]):null;
+out+=m+": "+(s?s.t+" — "+s.a+" (https://www.youtube.com/watch?v="+s.yt+")":"(a escolher)")+"\n";
+});
+return out;
+}
+$("#rcopy").onclick=function(){var t=rotTxt();if(navigator.clipboard){navigator.clipboard.writeText(t)}alert("Roteiro copiado. Cole onde quiser.")};
+$("#rwa").onclick=function(){window.open("https://wa.me/?text="+encodeURIComponent(rotTxt()),"_blank")};
+$("#rclear").onclick=function(){if(confirm("Limpar favoritas e roteiro?")){favs={};try{localStorage.removeItem("compasso1");localStorage.removeItem("compassoR")}catch(e){}render();roteiro()}};
+/* assistente */
+var KB=[
+{k:["noiva","entrada da noiva"],a:"Para a entrada da noiva: A Thousand Years, Perfect, Canon ou Ave Maria. Ouça as 4 e favorite."},
+{k:["saída","saida","final"],a:"Para a saída: Marcha Nupcial (solene), Marry You (festa) ou Better Together (leve)."},
+{k:["igreja","padre","pastor","veto","religiosa"],a:"Cerimônias religiosas costumam vetar. Monte o roteiro com 1 reserva por momento."},
+{k:["mpb","brasileira","nacional"],a:"Filtre por MPB: Marisa Monte, Nando Reis, ANAVITÓRIA, Melim e Roberto Carlos."},
+{k:["leve","descontraída","descontraida"],a:"Filtre por clima leve: Trevo, Velha Infância, Better Together e Somewhere Over the Rainbow."},
+{k:["orçamento","orcamento","preço","custa"],a:"O Compasso é gratuito. O custo está na execução com músicos, não na escolha."}
+];
+var FB="Não sei ainda. Tente perguntar sobre entrada da noiva, saída ou MPB.";
+var css="#wxb{position:fixed;right:1.2rem;bottom:1.2rem;z-index:150;width:60px;height:60px;border-radius:50%;border:0;background:#7b2230;color:#fff;font-size:1.5rem;cursor:pointer;font-family:inherit;box-shadow:0 8px 30px rgba(0,0,0,.4)}#wxp{position:fixed;right:1.2rem;bottom:5.2rem;z-index:150;width:min(350px,90vw);background:#151515;color:#f5f5f5;border:1px solid rgba(255,255,255,.15);border-radius:18px;overflow:hidden;display:none;flex-direction:column}#wxp.on{display:flex}#wxh{padding:.9rem 1.1rem;font-weight:800;font-size:.8rem;letter-spacing:.15em;text-transform:uppercase;background:#7b2230;color:#fff;display:flex;justify-content:space-between;align-items:center}#wxx{cursor:pointer}#wxm{padding:1rem 1.1rem;max-height:300px;overflow-y:auto;display:flex;flex-direction:column;gap:.6rem;font-size:.92rem;line-height:1.55}#wxm .u{align-self:flex-end;background:rgba(255,255,255,.12);border-radius:12px 12px 3px 12px;padding:.6rem .9rem;max-width:85%}#wxm .b{align-self:flex-start;background:rgba(255,255,255,.07);border-radius:12px 12px 12px 3px;padding:.6rem .9rem;max-width:90%}#wxf{display:flex;border-top:1px solid rgba(255,255,255,.12)}#wxi{flex:1;background:none;border:0;color:#f5f5f5;padding:.9rem 1rem;font-size:.95rem;font-family:inherit;outline:none;min-width:0}#wxs{background:none;border:0;color:#ff9db0;font-size:1.3rem;padding:0 1rem;cursor:pointer}";
+var st=document.createElement("style");st.textContent=css;document.head.appendChild(st);
+var w=document.createElement("div");w.innerHTML='<button id="wxb" aria-label="Perguntar">✦</button><div id="wxp"><div id="wxh"><span>Assistente</span><span id="wxx">×</span></div><div id="wxm"></div><div id="wxf"><input id="wxi" placeholder="Pergunte..." autocomplete="off"><button id="wxs" aria-label="Enviar">→</button></div></div>';document.body.appendChild(w);
+var said=false;
+function say(t,who){var m=document.getElementById("wxm");var d=document.createElement("div");d.className=who;d.textContent=t;m.appendChild(d);m.scrollTop=m.scrollHeight}
+function answer(t){var l=t.toLowerCase(),best=null,bs=0;KB.forEach(function(e){var s=0;e.k.forEach(function(k){if(l.indexOf(k)>=0)s+=k.length});if(s>bs){bs=s;best=e}});say(best?best.a:FB,"b")}
+function send(){var i=document.getElementById("wxi");var t=i.value.trim();if(!t)return;say(t,"u");i.value="";setTimeout(function(){answer(t)},350)}
+document.getElementById("wxb").onclick=function(){var p=document.getElementById("wxp");p.classList.toggle("on");if(p.classList.contains("on")&&!said){said=true;say("Olá! Pergunte sobre entrada da noiva, saída ou estilos.","b")}};
+document.getElementById("wxx").onclick=function(){document.getElementById("wxp").classList.remove("on")};
+document.getElementById("wxs").onclick=send;
+document.getElementById("wxi").addEventListener("keydown",function(e){if(e.key==="Enter")send()});
+/* base */
+var pl=$("#pl"),pln=$("#pln"),n=0;
+var rm=window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+function hidePl(){pl.classList.add("g");document.body.style.overflow="";setTimeout(function(){pl.remove()},800)}
+if(rm){hidePl()}else{document.body.style.overflow="hidden";var t=setInterval(function(){n=Math.min(100,n+Math.ceil(Math.random()*14));pln.textContent=n;if(n>=100){clearInterval(t);setTimeout(hidePl,250)}},110)}
+var hd=$("#hd"),hdn=$("#hdn");
+window.addEventListener("scroll",function(){hd.classList.toggle("f",window.scrollY>40)},{passive:true});
+$("#hdm").addEventListener("click",function(){hdn.classList.toggle("o")});
+$$("#hdn a").forEach(function(a){a.addEventListener("click",function(){hdn.classList.remove("o")})});
+var mqt=$("#mqt");mqt.innerHTML+=mqt.innerHTML;
+var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add("on");io.unobserve(e.target)}})},{threshold:.12});
+$$(".rv").forEach(function(el){io.observe(el)});
+$$(".fq-i").forEach(function(it){var q=$(".fq-q",it),a=$(".fq-a",it);q.addEventListener("click",function(){var open=it.classList.contains("o");$$(".fq-i.o").forEach(function(o){o.classList.remove("o");$(".fq-a",o).style.maxHeight="0"});if(!open){it.classList.add("o");a.style.maxHeight=a.scrollHeight+"px"}})});
+$("#yr").textContent=new Date().getFullYear();
+render();roteiro();
+})();
+</script>
+</body>
+</html>
