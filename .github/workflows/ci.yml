@@ -123,4 +123,4 @@ jobs:
     needs: [docker-build, smoke-index, smoke-links, smoke-form, secret-scan, iso-validators]
     runs-on: ubuntu-latest
     steps:
-      - run: echo 'BREAK-BEFORE-PROD: PASS. Merge e deploy liberados.'
+      - run: "echo BREAK-BEFORE-PROD-PASS. Merge e deploy liberados."
