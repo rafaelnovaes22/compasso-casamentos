@@ -1,0 +1,11 @@
+# Inventario de dados e canais (ISO 42001 A.7.2). Contato publico aqui precisa existir no site e vice-versa.
+
+files:
+  - index.html
+  - Dockerfile
+  - nginx.conf
+  - railway.json
+  - .dockerignore
+  - assets/
+contacts:
+  []  # nenhum contato direto no HTML; contato via links externos das secoes

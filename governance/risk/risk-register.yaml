@@ -1,0 +1,33 @@
+# Registro de riscos (ISO 42001 6.1). Controle precisa apontar para arquivo real.
+# Gaps abertos: sem analise critica periodica automatizada; sem DPO designado.
+risks:
+  - id: R1
+    title: Segredo ou PII vaza no codigo estatico
+    probability: 2
+    impact: 4
+    level: 8
+    classification: medio
+    controls:
+      - .github/workflows/ci.yml
+      - scripts/governance/validate-pii.sh
+      - evals/run.sh
+  - id: R2
+    title: Deploy quebrado chega a producao
+    probability: 2
+    impact: 3
+    level: 6
+    classification: medio
+    controls:
+      - .github/workflows/ci.yml
+      - Dockerfile
+      - evals/run.sh
+  - id: R3
+    title: Link ou contato desatualizado confunde cliente
+    probability: 3
+    impact: 2
+    level: 6
+    classification: medio
+    controls:
+      - .github/workflows/ci.yml
+      - scripts/governance/validate-data.sh
+      - index.html

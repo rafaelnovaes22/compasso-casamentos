@@ -1,0 +1,9 @@
+{
+  "cases": [
+    {"id": "E1", "name": "index tem titulo e tamanho minimo", "mirrors_ci": "smoke-index"},
+    {"id": "E2", "name": "docker builda e serve HTTP 200", "mirrors_ci": "docker-build + smoke-index"},
+    {"id": "E3", "name": "anchors internos resolvem, externos bem formados", "mirrors_ci": "smoke-links"},
+    {"id": "E4", "name": "form com submit e label, ou N/A documentado", "mirrors_ci": "smoke-form"},
+    {"id": "E5", "name": "secret scan limpo", "mirrors_ci": "secret-scan"}
+  ]
+}

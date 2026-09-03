@@ -1,0 +1,6 @@
+# PORQUÊ: contexto mínimo para imagem nginx estática.
+.git
+README.md
+railway.json
+railway.toml
+.dockerignore
