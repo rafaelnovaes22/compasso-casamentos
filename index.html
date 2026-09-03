@@ -30,7 +30,10 @@ a{color:inherit}
 .hd-n a:hover{color:var(--wn)}
 .hd-c{background:var(--wn);color:#faf5ec;border:0;border-radius:999px;padding:.8rem 1.6rem;font-weight:700;font-size:.82rem;letter-spacing:.14em;text-transform:uppercase;text-decoration:none;cursor:pointer;font-family:inherit}
 .hd-m{display:none;background:none;border:0;color:var(--ink);font-size:1.6rem;cursor:pointer}
-.hro{position:relative;min-height:92svh;display:flex;flex-direction:column;justify-content:flex-end;overflow:hidden;background:radial-gradient(70rem 34rem at 50% 110%,rgba(185,138,47,.28),transparent),#faf5ec}
+.hro{position:relative;min-height:92svh;display:flex;flex-direction:column;justify-content:flex-end;overflow:hidden}
+.hro-i{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.hro-v{position:absolute;inset:0;background:linear-gradient(180deg,rgba(250,245,236,.6),rgba(250,245,236,.15) 40%,rgba(250,245,236,.96))}
+.hro-x{position:relative}
 .hro-x{position:relative;padding:0 4vw 4vh}
 .hro-s{display:inline-block;font-size:.78rem;letter-spacing:.4em;text-transform:uppercase;color:var(--wn);border:1px solid rgba(123,34,48,.5);border-radius:999px;padding:.55rem 1.2rem;margin-bottom:1.4rem}
 .hro-t{font-size:clamp(3rem,10vw,9rem);margin:0}
@@ -101,9 +104,14 @@ a{color:inherit}
 .ft-g{font-family:"Instrument Serif",serif;font-size:clamp(2.8rem,11vw,10rem);margin:0}
 .ft-g em{color:var(--wn)}
 .ft-b{display:flex;justify-content:space-between;gap:1rem;flex-wrap:wrap;color:var(--mut);font-size:.85rem;margin-top:2rem}
+.bd{position:relative;margin:0 4vw;border-radius:26px;overflow:hidden;min-height:54vh;display:flex;align-items:flex-end}
+.bd img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.bd-v{position:absolute;inset:0;background:linear-gradient(180deg,rgba(51,39,42,.05),rgba(51,39,42,.82))}
+.bd-t{position:relative;padding:3rem;color:#faf5ec}
+.bd-t h2{font-family:"Instrument Serif",serif;font-weight:400;font-size:clamp(2rem,5vw,3.8rem);margin:0 0 1.2rem}
 .rv{opacity:0;transform:translateY(36px);transition:opacity .8s ease,transform .8s ease}
 .rv.on{opacity:1;transform:none}
-@media(max-width:960px){.hd-n{display:none}.hd-m{display:block}.hd-n.o{display:flex;position:fixed;inset:0;background:#faf5ec;flex-direction:column;align-items:center;justify-content:center;gap:2rem}.sg-g{grid-template-columns:1fr}.hro-f{grid-template-columns:repeat(2,1fr)}.hro-f div:nth-child(3){border-left:0;padding-left:0}}
+@media(max-width:1100px){.hd-n{display:none}.hd-m{display:block}.hd-n.o{display:flex;position:fixed;inset:0;background:#faf5ec;flex-direction:column;align-items:center;justify-content:center;gap:2rem}.sg-g{grid-template-columns:1fr}.hro-f{grid-template-columns:repeat(2,1fr)}.hro-f div:nth-child(3){border-left:0;padding-left:0}}
 @media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.001s !important;transition-duration:.001s !important}html{scroll-behavior:auto}.rv{opacity:1;transform:none}}
 </style>
 </head>
@@ -120,6 +128,8 @@ a{color:inherit}
 <button class="hd-m" id="hdm" aria-label="Abrir menu">☰</button>
 </header>
 <section class="hro" id="topo">
+<img class="hro-i" src="assets/hero.jpg" alt="Noivos se beijando na porta da cerimônia" fetchpriority="high">
+<div class="hro-v"></div>
 <div class="hro-x">
 <span class="hro-s">Música para casamentos</span>
 <h1 class="hro-t d">A trilha do <em>sim de vocês.</em></h1>
@@ -141,6 +151,14 @@ a{color:inherit}
 </div></div>
 <section class="mn rv">
 <p>Cada história tem um som. <em>A função aqui é ajudar vocês a acharem o seu,</em> com contexto honesto e sem ranking de popularidade.</p>
+</section>
+<section class="bd rv">
+<img src="assets/festa.jpg" alt="Cerimônia ao ar livre sob luzes" loading="lazy">
+<div class="bd-v"></div>
+<div class="bd-t">
+<h2 class="d">O dia passa. <em style="color:#e8c476">A música fica.</em></h2>
+<a class="bt bt1" href="#roteiro">Montar meu roteiro</a>
+</div>
 </section>
 <section class="sc" id="repertorio">
 <div class="sc-h rv"><h2 class="d">Repertório</h2><span><b id="favc" style="color:var(--wn)">0</b> favoritas</span></div>
