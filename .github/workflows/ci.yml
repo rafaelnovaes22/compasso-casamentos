@@ -1,0 +1,126 @@
+name: ci
+
+# PORQUE: break-before-prod. Vermelho aqui bloqueia merge e deploy no Railway.
+# Jobs sem dependencias pesadas: docker, curl, python3 e grep do runner ubuntu.
+
+on:
+  push:
+    branches: [main, "chore/**", "feat/**", "fix/**"]
+  pull_request:
+    branches: [main]
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  docker-build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - name: docker build
+        run: docker build -t site:test .
+
+  smoke-index:
+    needs: docker-build
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - name: build
+        run: docker build -t site:test .
+      - name: serve e checa index
+        run: |
+          set -euo pipefail
+          id=$(docker run -d -p 8080:8080 site:test)
+          trap 'docker rm -f "$id"' EXIT
+          for i in $(seq 1 15); do
+            curl -fsS http://localhost:8080/ >/dev/null && break || sleep 2
+          done
+          body=$(curl -fsS http://localhost:8080/)
+          echo "$body" | grep -qi '<title>[^<]*[^ <][^<]*</title>'
+          test "$(printf '%s' "$body" | wc -c)" -gt 5000
+
+  smoke-links:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - name: anchors internos resolvem, externos bem formados
+        run: |
+          python3 - <<'EOF'
+          import re, sys
+          t = open('index.html', encoding='utf-8', errors='ignore').read()
+          hrefs = re.findall(r'href="([^"]*)"', t)
+          ids = set(re.findall(r'id="([^"]+)"', t))
+          bad = []
+          for h in hrefs:
+              if not h.strip():
+                  bad.append('(href vazio)')
+              elif h.startswith('#'):
+                  if h != '#' and h[1:] not in ids:
+                      bad.append(h)
+              elif any(c in h for c in ("'", '+', '{', '}')):
+                  continue  # template JS, resolvido em runtime
+              elif not re.match(r'(https?://|mailto:|tel:)', h):
+                  bad.append(h)
+          if bad:
+              print('LINKS INVALIDOS: ' + str(bad)); sys.exit(1)
+          print('links OK: ' + str(len(hrefs)) + ' hrefs')
+          EOF
+
+  smoke-form:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - name: semantica de form ou N/A
+        run: |
+          python3 - <<'EOF'
+          import re, sys
+          t = open('index.html', encoding='utf-8', errors='ignore').read()
+          forms = re.findall(r'<form[^>]*>(.*?)</form>', t, re.I | re.S)
+          if not forms:
+              print('form: N/A (site usa links wa.me, sem backend)'); sys.exit(0)
+          for f in forms:
+              assert re.search(r'(type="submit"|<button|required)', f, re.I), 'form sem submit/required'
+              assert re.search(r'(<label|aria-label|placeholder=)', f, re.I), 'form sem label'
+          print('form OK: ' + str(len(forms)) + ' form(s)')
+          EOF
+
+  secret-scan:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - name: varredura de segredos (conteudo publicado, nao os scanners)
+        run: |
+          set -euo pipefail
+          if grep -rEn -e 'AKIA[0-9A-Z]{16}' -e 'ghp_[A-Za-z0-9]{10,}' \
+              -e 'BEGIN .{0,20}PRIVATE KEY' -e 'sk-live-[A-Za-z0-9]+' -e 'xoxb-[A-Za-z0-9-]+' \
+              index.html Dockerfile nginx.conf railway.json governance assets 2>/dev/null; then
+            echo 'SECRET SCAN FAIL'; exit 1
+          fi
+          echo 'secrets: clean'
+
+  iso-validators:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - name: risco, PII e dados (ai-governance-kit adaptado, ISO 42001)
+        run: |
+          set -euo pipefail
+          bash scripts/governance/validate-risk.sh
+          bash scripts/governance/validate-pii.sh
+          bash scripts/governance/validate-data.sh
+
+  gate:
+    needs: [docker-build, smoke-index, smoke-links, smoke-form, secret-scan, iso-validators]
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo 'BREAK-BEFORE-PROD: PASS. Merge e deploy liberados.'
