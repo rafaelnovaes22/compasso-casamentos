@@ -279,12 +279,19 @@ function rotTxt(){
 var saved={};try{saved=JSON.parse(localStorage.getItem("compassoR")||"{}")||{}}catch(e){saved={}}
 var out="NOSSO ROTEIRO, COMPASSO\n\n";
 MOM.forEach(function(m){
-var s=saved[m]?byId(saved[m]):null;
+var s=saved[m]&&favs[saved[m]]?byId(saved[m]):null;
 out+=m+": "+(s?s.t+" — "+s.a+" (https://www.youtube.com/watch?v="+s.yt+")":"(a escolher)")+"\n";
 });
 return out;
 }
-$("#rcopy").onclick=function(){var t=rotTxt();if(navigator.clipboard){navigator.clipboard.writeText(t)}alert("Roteiro copiado. Cole onde quiser.")};
+$("#rcopy").onclick=async function(){
+var t=rotTxt();
+try{
+if(!navigator.clipboard)throw new Error("Área de transferência indisponível");
+await navigator.clipboard.writeText(t);
+alert("Roteiro copiado. Cole onde quiser.");
+}catch(error){window.prompt("Não foi possível copiar automaticamente. Copie seu roteiro abaixo:",t)}
+};
 $("#rwa").onclick=function(){window.open("https://wa.me/?text="+encodeURIComponent(rotTxt()),"_blank")};
 $("#rclear").onclick=function(){if(confirm("Limpar favoritas e roteiro?")){favs={};try{localStorage.removeItem("compasso1");localStorage.removeItem("compassoR")}catch(e){}render();roteiro()}};
 /* assistente */

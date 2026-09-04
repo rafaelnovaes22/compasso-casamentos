@@ -1,0 +1,21 @@
+name: portfolio-regressions
+
+on:
+  pull_request:
+  push:
+    branches: ["codex/finish-portfolio"]
+
+permissions:
+  contents: read
+
+jobs:
+  journeys:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+      - name: Existing product journeys
+        run: node --test evals/*.test.mjs
