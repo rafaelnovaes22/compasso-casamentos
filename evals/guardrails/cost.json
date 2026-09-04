@@ -1,0 +1,5 @@
+{
+  "model": "sem LLM backend (assistente local por regras); custo LLM 0%",
+  "cost_ratio_pct": 0.0,
+  "notes": "Site estatico nginx. Custo numerador R$0 LLM; denominador operacao. Sem inferencia por outcome."
+}

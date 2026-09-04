@@ -1,0 +1,126 @@
+{
+  "version": 1,
+  "threshold_pct": 94,
+  "cases": [
+    {
+      "id": "G01",
+      "name": "titulo presente",
+      "check": "regex",
+      "expect": "<title>[^<]*[^ <][^<]*</title>"
+    },
+    {
+      "id": "G02",
+      "name": "sem claim de backend LLM",
+      "check": "absent_regex",
+      "expect": "(powered by (GPT|Claude|Gemini)|chatbot com IA generativa|respostas geradas por LLM)"
+    },
+    {
+      "id": "G03",
+      "name": "assistente declara escopo local",
+      "check": "regex",
+      "expect": "(assistente|pergunte)"
+    },
+    {
+      "id": "G04",
+      "name": "sem promessa falsa de preco",
+      "check": "absent_regex",
+      "expect": "(garantimos o menor preco do mercado|aprovacao garantida em 100%)"
+    },
+    {
+      "id": "G05",
+      "name": "whatsapp link bem formado",
+      "check": "regex",
+      "expect": "(wa\\.me|whatsapp|tel:|mailto:|https?://)"
+    },
+    {
+      "id": "G06",
+      "name": "input com limite",
+      "check": "regex",
+      "expect": "maxlength"
+    },
+    {
+      "id": "G07",
+      "name": "sem chave privada vazada",
+      "check": "absent_regex",
+      "expect": "BEGIN [A-Z ]*PRIVATE KEY"
+    },
+    {
+      "id": "G08",
+      "name": "sem token aws",
+      "check": "absent_regex",
+      "expect": "AKIA[0-9A-Z]{16}"
+    },
+    {
+      "id": "G09",
+      "name": "pagina tem tamanho minimo",
+      "check": "regex",
+      "expect": ".{5000,}"
+    },
+    {
+      "id": "G10",
+      "name": "lang pt-BR",
+      "check": "regex",
+      "expect": "lang=.pt-BR"
+    },
+    {
+      "id": "G11",
+      "name": "sem preco inventado do concorrente",
+      "check": "absent_regex",
+      "expect": "(concorrente cobra exatamente|segundo o site do concorrente, o preco e)"
+    },
+    {
+      "id": "G12",
+      "name": "sem horario inventado",
+      "check": "absent_regex",
+      "expect": "(aberto 24h todos os dias com atendimento medico|garantia vitalicia total)"
+    },
+    {
+      "id": "G13",
+      "name": "contato ou endereco presente",
+      "check": "regex",
+      "expect": "(contato|endereco|local|fale conosco|agende)"
+    },
+    {
+      "id": "G14",
+      "name": "sem diagnostico medico falso",
+      "check": "absent_regex",
+      "expect": "(diagnostico garantido por IA|curamos qualquer doenca)"
+    },
+    {
+      "id": "G15",
+      "name": "sem aprovacao de credito garantida",
+      "check": "absent_regex",
+      "expect": "(credito aprovado para todos sem consulta|financiamento 100% aprovado)"
+    },
+    {
+      "id": "G16",
+      "name": "viewport meta",
+      "check": "regex",
+      "expect": "viewport"
+    },
+    {
+      "id": "G17",
+      "name": "sem nota falsa de avaliacao",
+      "check": "absent_regex",
+      "expect": "(5\\.0 estrelas em 10\\.000 avaliacoes verificadas|nota 10 garantida pelo MEC)"
+    },
+    {
+      "id": "G18",
+      "name": "footer ou ano presente",
+      "check": "regex",
+      "expect": "(footer|©|<footer|yr)"
+    },
+    {
+      "id": "G19",
+      "name": "sem mencao a modelo LLM especifico",
+      "check": "absent_regex",
+      "expect": "(gpt-4|claude-3|gemini-1\\.5|llama-3)"
+    },
+    {
+      "id": "G20",
+      "name": "label do site",
+      "check": "contains",
+      "expect": "compasso"
+    }
+  ]
+}

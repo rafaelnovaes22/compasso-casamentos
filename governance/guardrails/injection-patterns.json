@@ -1,0 +1,166 @@
+{
+  "version": 1,
+  "updated": "2026-09-04",
+  "patterns": [
+    {
+      "id": "INJ01",
+      "name": "ignore-previous-instructions",
+      "regex": "(?i)ignor(e|a|e as) (as )?(instrucoes|instru[cç][oõ]es|previous instructions)"
+    },
+    {
+      "id": "INJ02",
+      "name": "system-prompt-leak",
+      "regex": "(?i)(mostre|revele|exiba|show).{0,30}(system prompt|prompt do sistema|instrucao do sistema)"
+    },
+    {
+      "id": "INJ03",
+      "name": "jailbreak-dan",
+      "regex": "(?i)\\bDAN\\b.{0,20}(mode|jailbreak)|jailbreak"
+    },
+    {
+      "id": "INJ04",
+      "name": "roleplay-evil",
+      "regex": "(?i)(aja como|act as|finja ser|pretend to be).{0,30}(hacker|vilao|sem limites|without limits)"
+    },
+    {
+      "id": "INJ05",
+      "name": "prompt-injection-pt",
+      "regex": "(?i)(esqueca|ignore).{0,20}(tudo|regras|guardrails)"
+    },
+    {
+      "id": "INJ06",
+      "name": "developer-mode",
+      "regex": "(?i)(modo desenvolvedor|developer mode|dev mode)"
+    },
+    {
+      "id": "INJ07",
+      "name": "base64-exfil",
+      "regex": "(?i)(codifique|encode).{0,20}base64"
+    },
+    {
+      "id": "INJ08",
+      "name": "translate-instruction",
+      "regex": "(?i)(traduza|translate).{0,20}(instrucoes|instructions).{0,20}(ingles|english)"
+    },
+    {
+      "id": "INJ09",
+      "name": "override-guardian",
+      "regex": "(?i)(desative|disable|bypass|contorne).{0,20}(guardian|filtro|filter|moderacao)"
+    },
+    {
+      "id": "INJ10",
+      "name": "xss-script-tag",
+      "regex": "(?i)<\\s*script[^>]*>"
+    },
+    {
+      "id": "INJ11",
+      "name": "xss-img-onerror",
+      "regex": "(?i)<\\s*img[^>]*onerror"
+    },
+    {
+      "id": "INJ12",
+      "name": "xss-svg-onload",
+      "regex": "(?i)<\\s*svg[^>]*onload"
+    },
+    {
+      "id": "INJ13",
+      "name": "xss-javascript-uri",
+      "regex": "(?i)javascript\\s*:"
+    },
+    {
+      "id": "INJ14",
+      "name": "xss-event-handler",
+      "regex": "(?i)on(click|load|error|mouseover|focus)\\s*="
+    },
+    {
+      "id": "INJ15",
+      "name": "sql-injection-union",
+      "regex": "(?i)union\\s+select"
+    },
+    {
+      "id": "INJ16",
+      "name": "sql-injection-drop",
+      "regex": "(?i)drop\\s+table"
+    },
+    {
+      "id": "INJ17",
+      "name": "sql-injection-or-1",
+      "regex": "(?i)or\\s+1\\s*=\\s*1"
+    },
+    {
+      "id": "INJ18",
+      "name": "path-traversal",
+      "regex": "\\.\\./\\.\\./"
+    },
+    {
+      "id": "INJ19",
+      "name": "ssrf-localhost",
+      "regex": "(?i)(localhost|127\\.0\\.0\\.1|169\\.254\\.169\\.254)"
+    },
+    {
+      "id": "INJ20",
+      "name": "prompt-leak-delimiter",
+      "regex": "(?i)(###|```).{0,10}(system|instrucao)"
+    },
+    {
+      "id": "INJ21",
+      "name": "token-smuggling",
+      "regex": "(?i)(seu token|api[_-]?key|secret).{0,15}(e |is |:)"
+    },
+    {
+      "id": "INJ22",
+      "name": "phishing-wa-redirect",
+      "regex": "(?i)(wa\\.me|whatsapp).{0,20}(http|bit\\.ly|tinyurl)"
+    },
+    {
+      "id": "INJ23",
+      "name": "instruction-in-image",
+      "regex": "(?i)(leia|read).{0,15}(qr ?code|imagem anexa).{0,15}(instrucao|instruction)"
+    },
+    {
+      "id": "INJ24",
+      "name": "multilang-bypass-en",
+      "regex": "(?i)from now on.{0,20}(you are|act as)"
+    },
+    {
+      "id": "INJ25",
+      "name": "multilang-bypass-es",
+      "regex": "(?i)(a partir de ahora|de ahora en adelante).{0,20}(eres|actua como)"
+    },
+    {
+      "id": "INJ26",
+      "name": "refund-scam",
+      "regex": "(?i)(reembolso|refund).{0,20}(cartao|pix|conta).{0,20}(envie|informe)"
+    },
+    {
+      "id": "INJ27",
+      "name": "pii-harvest-cpf",
+      "regex": "(?i)(informe|digite|envie).{0,20}(cpf|rg|cnpj)"
+    },
+    {
+      "id": "INJ28",
+      "name": "pii-harvest-card",
+      "regex": "(?i)(numero do cartao|card number| CVV |cvv)"
+    },
+    {
+      "id": "INJ29",
+      "name": "chain-of-thought-leak",
+      "regex": "(?i)(mostre seu raciocinio|show your reasoning|chain.of.thought)"
+    },
+    {
+      "id": "INJ30",
+      "name": "tool-use-escalation",
+      "regex": "(?i)(execute|rode|run).{0,20}(comando|command|shell|rm -rf)"
+    },
+    {
+      "id": "INJ31",
+      "name": "persona-grandma",
+      "regex": "(?i)(vozinha|grandma).{0,25}(dormir|sleep).{0,25}(receita|napalm|windows key)"
+    },
+    {
+      "id": "INJ32",
+      "name": "indirect-whatsapp-order",
+      "regex": "(?i)(mensagem no whatsapp|forward).{0,20}(diz para|instructs to).{0,20}(transferir|pagar|pay)"
+    }
+  ]
+}

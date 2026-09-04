@@ -31,3 +31,14 @@ risks:
       - .github/workflows/ci.yml
       - scripts/governance/validate-data.sh
       - index.html
+  - id: R4
+    title: Injection ou input malicioso no assistente local
+    probability: 2
+    impact: 4
+    level: 8
+    classification: medio
+    controls:
+      - .github/workflows/ci.yml
+      - governance/guardrails/injection-patterns.json
+      - scripts/guardrails/check-injection.py
+      - index.html
