@@ -165,7 +165,7 @@ a{color:inherit}
 <div class="flt rv" id="fm"><b>Momento</b></div>
 <div class="flt rv" id="fs"><b>Estilo</b></div>
 <div class="flt rv" id="fd"><b>Clima</b></div>
-<input class="srch rv" id="sq" placeholder="Buscar por música ou artista..." autocomplete="off">
+<input maxlength="200" class="srch rv" id="sq" placeholder="Buscar por música ou artista..." autocomplete="off">
 <p class="count rv" id="ct"></p>
 <div class="sg-g" id="grid"></div>
 </section>
@@ -299,11 +299,15 @@ var KB=[
 var FB="Não sei ainda. Tente perguntar sobre entrada da noiva, saída ou MPB.";
 var css="#wxb{position:fixed;right:1.2rem;bottom:1.2rem;z-index:150;width:60px;height:60px;border-radius:50%;border:0;background:#7b2230;color:#fff;font-size:1.5rem;cursor:pointer;font-family:inherit;box-shadow:0 8px 30px rgba(0,0,0,.4)}#wxp{position:fixed;right:1.2rem;bottom:5.2rem;z-index:150;width:min(350px,90vw);background:#151515;color:#f5f5f5;border:1px solid rgba(255,255,255,.15);border-radius:18px;overflow:hidden;display:none;flex-direction:column}#wxp.on{display:flex}#wxh{padding:.9rem 1.1rem;font-weight:800;font-size:.8rem;letter-spacing:.15em;text-transform:uppercase;background:#7b2230;color:#fff;display:flex;justify-content:space-between;align-items:center}#wxx{cursor:pointer}#wxm{padding:1rem 1.1rem;max-height:300px;overflow-y:auto;display:flex;flex-direction:column;gap:.6rem;font-size:.92rem;line-height:1.55}#wxm .u{align-self:flex-end;background:rgba(255,255,255,.12);border-radius:12px 12px 3px 12px;padding:.6rem .9rem;max-width:85%}#wxm .b{align-self:flex-start;background:rgba(255,255,255,.07);border-radius:12px 12px 12px 3px;padding:.6rem .9rem;max-width:90%}#wxf{display:flex;border-top:1px solid rgba(255,255,255,.12)}#wxi{flex:1;background:none;border:0;color:#f5f5f5;padding:.9rem 1rem;font-size:.95rem;font-family:inherit;outline:none;min-width:0}#wxs{background:none;border:0;color:#ff9db0;font-size:1.3rem;padding:0 1rem;cursor:pointer}";
 var st=document.createElement("style");st.textContent=css;document.head.appendChild(st);
-var w=document.createElement("div");w.innerHTML='<button id="wxb" aria-label="Perguntar">✦</button><div id="wxp"><div id="wxh"><span>Assistente</span><span id="wxx">×</span></div><div id="wxm"></div><div id="wxf"><input id="wxi" placeholder="Pergunte..." autocomplete="off"><button id="wxs" aria-label="Enviar">→</button></div></div>';document.body.appendChild(w);
+var w=document.createElement("div");w.innerHTML='<button id="wxb" aria-label="Perguntar">✦</button><div id="wxp"><div id="wxh"><span>Assistente</span><span id="wxx">×</span></div><div id="wxm"></div><div id="wxf"><input id="wxi" maxlength="200" placeholder="Pergunte..." autocomplete="off"><button id="wxs" aria-label="Enviar">→</button></div></div>';document.body.appendChild(w);
 var said=false;
 function say(t,who){var m=document.getElementById("wxm");var d=document.createElement("div");d.className=who;d.textContent=t;m.appendChild(d);m.scrollTop=m.scrollHeight}
-function answer(t){var l=t.toLowerCase(),best=null,bs=0;KB.forEach(function(e){var s=0;e.k.forEach(function(k){if(l.indexOf(k)>=0)s+=k.length});if(s>bs){bs=s;best=e}});say(best?best.a:FB,"b")}
-function send(){var i=document.getElementById("wxi");var t=i.value.trim();if(!t)return;say(t,"u");i.value="";setTimeout(function(){answer(t)},350)}
+/* guardrails-stop-94-25: assistente local por regras, sem backend LLM. 3 camadas: (1) maxlength 200, (2) bloqueio 32 padroes injection, (3) fallback sem alegar LLM. Log JSON em console. */
+var GUARD_PATTERNS=[/ignor(e|a) (as )?(instrucoes|previous instructions)/i,/(mostre|revele|exiba|show).{0,30}(system prompt|prompt do sistema)/i,/\bDAN\b.{0,20}(mode|jailbreak)|jailbreak/i,/(aja como|act as|finja ser|pretend to be).{0,30}(hacker|sem limites|without limits)/i,/(esqueca|ignore).{0,20}(tudo|regras|guardrails)/i,/(modo desenvolvedor|developer mode|dev mode)/i,/(codifique|encode).{0,20}base64/i,/(traduza|translate).{0,20}(instrucoes|instructions)/i,/(desative|disable|bypass|contorne).{0,20}(guardian|filtro|filter|moderacao)/i,/<\s*script[^>]*>/i,/<\s*img[^>]*onerror/i,/<\s*svg[^>]*onload/i,/javascript\s*:/i,/on(click|load|error|mouseover|focus)\s*=/i,/union\s+select/i,/drop\s+table/i,/or\s+1\s*=\s*1/i,/\.\.\/\.\.\//,/(localhost|127\.0\.0\.1|169\.254\.169\.254)/i,/(###|```).{0,10}(system|instrucao)/i,/(seu token|api[_-]?key|secret).{0,15}(e |is |:)/i,/(wa\.me|whatsapp).{0,20}(http|bit\.ly|tinyurl)/i,/(leia|read).{0,15}(qr ?code|imagem anexa).{0,15}(instrucao|instruction)/i,/from now on.{0,20}(you are|act as)/i,/(a partir de ahora|de ahora en adelante).{0,20}(eres|actua como)/i,/(reembolso|refund).{0,20}(cartao|pix|conta).{0,20}(envie|informe)/i,/(informe|digite|envie).{0,20}(cpf|rg|cnpj)/i,/(numero do cartao|card number| CVV |cvv)/i,/(mostre seu raciocinio|show your reasoning|chain.of.thought)/i,/(execute|rode|run).{0,20}(comando|command|shell|rm -rf)/i,/(vozinha|grandma).{0,25}(dormir|sleep).{0,25}(receita|napalm|windows key)/i,/(mensagem no whatsapp|forward).{0,20}(diz para|instructs to).{0,20}(transferir|pagar|pay)/i];
+function guardBlocked(t){for(var i=0;i<GUARD_PATTERNS.length;i++){if(GUARD_PATTERNS[i].test(t||""))return i}return -1}
+var GUARD_FB="Nao posso ajudar com isso. Pergunte sobre o servico do site.";
+function answer(t){t=String(t||"").slice(0,200);var bi=guardBlocked(t);if(bi>=0){try{console.log(JSON.stringify({event:"injection_blocked",pattern:bi,input:t.slice(0,80)}))}catch(e){}say(GUARD_FB,"b");return}var l=t.toLowerCase(),best=null,bs=0;KB.forEach(function(e){var s=0;e.k.forEach(function(k){if(l.indexOf(k)>=0)s+=k.length});if(s>bs){bs=s;best=e}});say(best?best.a:FB,"b")}
+function send(){var i=document.getElementById("wxi");var t=i.value.trim().slice(0,200);if(!t)return;if(t.length>=200){i.setAttribute("maxlength","200")}say(t,"u");i.value="";setTimeout(function(){answer(t)},350)}
 document.getElementById("wxb").onclick=function(){var p=document.getElementById("wxp");p.classList.toggle("on");if(p.classList.contains("on")&&!said){said=true;say("Olá! Pergunte sobre entrada da noiva, saída ou estilos.","b")}};
 document.getElementById("wxx").onclick=function(){document.getElementById("wxp").classList.remove("on")};
 document.getElementById("wxs").onclick=send;
@@ -325,5 +329,6 @@ $("#yr").textContent=new Date().getFullYear();
 render();roteiro();
 })();
 </script>
+<!-- guardrails-stop-94-25: sanitizacao input, limites form 200, sem backend LLM alegado -->
 </body>
 </html>

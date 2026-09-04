@@ -119,8 +119,40 @@ jobs:
           bash scripts/governance/validate-pii.sh
           bash scripts/governance/validate-data.sh
 
+
+  guardrails-injection:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - name: injection 30+ padroes com bloqueio e log JSON
+        run: |
+          set -euo pipefail
+          python3 scripts/guardrails/check-injection.py
+          test "$(python3 -c "import json;print(len(json.load(open('governance/guardrails/injection-patterns.json'))['patterns']))")" -ge 30
+
+  golden-hallucination:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - name: golden anti-alucinacao (BLOQUEADO se <=94%)
+        run: |
+          set -euo pipefail
+          python3 scripts/guardrails/check-golden.py
+
+  cost-slm:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - name: custo SLM (BLOQUEADO se >=25%)
+        run: |
+          set -euo pipefail
+          python3 scripts/guardrails/check-cost.py
+
   gate:
-    needs: [docker-build, smoke-index, smoke-links, smoke-form, secret-scan, iso-validators]
+    needs: [docker-build, smoke-index, smoke-links, smoke-form, secret-scan, iso-validators, guardrails-injection, golden-hallucination, cost-slm]
     runs-on: ubuntu-latest
     steps:
       - run: "echo BREAK-BEFORE-PROD-PASS. Merge e deploy liberados."
